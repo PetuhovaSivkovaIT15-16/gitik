@@ -113,6 +113,26 @@ void vavod(int pole[n][n])
 	}
 	cout << endl;
 }
+bool itog(int pole[n][n])
+{
+	int prpole[n][n] =
+	{
+		{1,2,3,4},
+		{5,6,7,8},
+		{9,10,11,12},
+		{13,14,15,0}
+	};
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (pole[i][j] != prpole[i][j])
+				return false;
+		}
+	}
+	return true;
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -124,4 +144,22 @@ int main()
 	peremeshivanie(pole, pstr, pstl);
 	cout << "Перемешанное игровое поле: " << endl;
 	vavod(pole);
+	if (itog(pole) != true)
+	{
+		int plitka;
+		cout << "Введите число, которое хотите переместить на пустую клетку: ";
+		cin >> plitka;
+		if (peremechenie(pole, pstr, pstl, plitka))
+		{
+			cout << "Перемещение выполнено" << endl;
+			vavod(pole);
+		}
+		else
+		{
+			cout << "Невозможно переместить плитку" << endl;
+			vavod(pole);
+		}
+	}
+	else
+		cout << "ПОБЕДА!";
 }
