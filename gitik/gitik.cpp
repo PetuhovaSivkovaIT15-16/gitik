@@ -97,11 +97,31 @@ bool peremechenie(int pole[n][n], int& pstr, int& pstl, int number)
 	else
 		return false;
 }
+//вывод игрового поля
+void vavod(int pole[n][n])
+{
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (pole[i][j] == 0)
+				cout << "   " << " ";
+			else
+				cout << setw(3) << pole[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int pole[n][n];
 	int pstr, pstl;
 	zapolnenie(pole, pstr, pstl);
+	cout << "Начальное игровое поле: " << endl;
+	vavod(pole);
 	peremeshivanie(pole, pstr, pstl);
+	cout << "Перемешанное игровое поле: " << endl;
+	vavod(pole);
 }
