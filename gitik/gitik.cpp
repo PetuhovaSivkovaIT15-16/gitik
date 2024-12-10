@@ -68,6 +68,35 @@ void peremeshivanie(int pole[n][n], int& pstr, int& pstl)
 		}
 	}
 }
+//Перемещение плитки
+bool peremechenie(int pole[n][n], int& pstr, int& pstl, int number)
+{
+	int rstr, rstl;
+	for (int i = 0;i < n;i++)
+	{
+		for (int j = 0;j < n;j++)
+		{
+			if (pole[i][j] == number)
+			{
+				rstr = i;
+				rstl = j;
+				break;
+			}
+		}
+	}
+	//Проверка можно ли переместить плитку
+	if ((rstr == pstr && abs(rstl - pstl) == 1) || (rstl == pstl && abs(rstr - pstr) == 1))
+	{
+		int dop = pole[rstr][rstl];
+		pole[rstr][rstl] = pole[pstr][pstl];
+		pole[pstr][pstl] = dop;
+		pstr = rstr;
+		pstl = rstl;
+		return true;
+	}
+	else
+		return false;
+}
 int main()
 {
 	setlocale(LC_ALL, "Russian");
